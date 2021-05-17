@@ -11,15 +11,50 @@ import React from 'react';
 // }
 
 // 위에랑 같은 소리임.
-function Food({fav}) {
-  return <h1>I like {fav}</h1>
+// function Food({fav}) {
+//   return <h1>I like {fav}</h1>
+// }
+function Food({name, picture}) {
+  return (
+    <div>
+      <h1>I like {name}</h1>
+      <img src = {picture} />
+    </div>
+  );
 }
 
+const foodILike = [
+  {
+    name: "Kimchi",
+    image: "https://img.hankyung.com/photo/202012/99.23222843.1.jpg"
+  },
+  {
+    name: "ramen",
+    image: "https://health.chosun.com/site/data/img_dir/2020/09/07/2020090702900_0.jpg"
+  },
+  {
+    name: "samgiopsal",
+    image: "https://cdn.mindgil.com/news/photo/202103/70839_7148_1250.jpg"
+  },
+  {
+    name: "chukumi",
+    image: "https://blog.kakaocdn.net/dn/dh9Dqr/btqzsWLoYqY/KgEhm09QyxfW29QfeWlkWk/img.png"
+  },
+  {
+    name: "kimbap",
+    image: "https://cdn.fneyefocus.com/news/photo/202105/15991_19264_5337.jpg"
+  },
+]
 
 function App() {
   return (
     <div>
       <h1>Hello!!!</h1>
+      {foodILike.map(dish => (
+          <Food name = {dish.name} picture = {dish.image} />
+        ))
+      }
+
       {/* 
         Food라는 component에 fav라는 이름의 property를 kimchi라는 value로 줌.
         component는 대문자로 시작해야 함.
@@ -33,10 +68,11 @@ function App() {
       />
       */}
 
-      <Food fav = "kimchi" />
+      {/* <Food fav = "kimchi" />
       <Food fav = "ramen" />
       <Food fav = "samgiopsal" />
       <Food fav = "chukumi" />
+      <Food fav = "kimbap" /> */}
     </div>
   );
 }

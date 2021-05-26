@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from "prop-types";
 
 // component를 만들 때마다 모든 것을 다 구현하지 않기 위해서 extend from을 함
 // react component에서 확장을 하였기 때문에 render method를 사용.
@@ -24,7 +23,24 @@ class App extends React.Component{
     
   };
 
+  //render가 먼저 실행이 된 후에 componentDidMount, componentDidUpdate가 호출됨
+  //componentDidMount는 component가 screen에 표시 될 때, 즉 사이트에 들어올 때 componentDidMount를 호출
+  componentDidMount(){
+    console.log("component rendered");
+  }
+
+  //componentDidUpdate는 add버튼이나 minus버튼을 클릭 해서 state를 변경할 때 호출
+  componentDidUpdate(){
+    console.log("I just updated");
+  }
+
+  //componentWillUnmount는 component가 떠날 때 호출
+  componentWillUnmount(){
+    console.log("Goodbye, cruel world");
+  }
+
   render(){
+    console.log("I'm rendering");
     return (
       <div>
         <h1> I'm a class {this.state.count}</h1>

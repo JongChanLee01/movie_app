@@ -14,10 +14,14 @@ class App extends React.Component{
 
   // 이건 javascript코드임
   add = () => {
-    console.log("add");
+    // this.setState({count: this.state.count + 1});
+    // 아래 방법이 state를 set할 때 react에서 외부의 상태에 의존하지 않은 가장 좋은 방법.
+    this.setState(current => ({count: current.count + 1}));
   };
   minus = () => {
-    console.log("minus");
+    // this.setState({count: this.state.count - 1});
+    this.setState(current => ({count: current.count - 1}));
+    
   };
 
   render(){

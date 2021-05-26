@@ -6,46 +6,23 @@ import React from 'react';
 // class component는 class고 react component로 부터 확장됨.
 // react는 자동적으로 모든 class component의 render method를 실행하고자 함
 class App extends React.Component{
-  // state는 object이고 component의 data를 넣을 공간이 있고 이 데이터는 변함
   state = {
-    count: 0
+    isLoading: true,
+    movies: []
   };
-
-  // 이건 javascript코드임
-  add = () => {
-    // this.setState({count: this.state.count + 1});
-    // 아래 방법이 state를 set할 때 react에서 외부의 상태에 의존하지 않은 가장 좋은 방법.
-    this.setState(current => ({count: current.count + 1}));
-  };
-  minus = () => {
-    // this.setState({count: this.state.count - 1});
-    this.setState(current => ({count: current.count - 1}));
-    
-  };
-
-  //render가 먼저 실행이 된 후에 componentDidMount, componentDidUpdate가 호출됨
-  //componentDidMount는 component가 screen에 표시 될 때, 즉 사이트에 들어올 때 componentDidMount를 호출
   componentDidMount(){
-    console.log("component rendered");
+    setTimeout(() => {
+      this.setState({isLoading: false, book: true});
+    }, 6000);
   }
-
-  //componentDidUpdate는 add버튼이나 minus버튼을 클릭 해서 state를 변경할 때 호출
-  componentDidUpdate(){
-    console.log("I just updated");
-  }
-
-  //componentWillUnmount는 component가 떠날 때 호출
-  componentWillUnmount(){
-    console.log("Goodbye, cruel world");
-  }
-
   render(){
-    console.log("I'm rendering");
+    const {isLoading} = this.state;
     return (
       <div>
-        <h1> I'm a class {this.state.count}</h1>
-        <button onClick={this.add}>Add</button>
-        <button onClick={this.minus}>Minus</button>
+        {/* {this.state.isLoading ? "Loading" : "We are ready"} */}
+        
+        {/* 위에 const {isLoading} = this.state; (ES6 코드)를 새로 작성하여 밑에 this.state를 더이상 안붙여도됨*/}
+        {isLoading ? "Loading" : "We are ready"}
       </div>
     )
   }

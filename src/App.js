@@ -1,125 +1,34 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
-const foodILike = [
-  {
-    id: 1,
-    name: "Kimchi",
-    image: "https://img.hankyung.com/photo/202012/99.23222843.1.jpg",
-    rating: 5
-  },
-  {
-    id: 2,
-    name: "ramen",
-    image: "https://health.chosun.com/site/data/img_dir/2020/09/07/2020090702900_0.jpg",
-    rating: 4.9
-  },
-  {
-    id: 3,
-    name: "samgiopsal",
-    image: "https://cdn.mindgil.com/news/photo/202103/70839_7148_1250.jpg",
-    rating: 4.8
-  },
-  {
-    id: 4,
-    name: "chukumi",
-    image: "https://blog.kakaocdn.net/dn/dh9Dqr/btqzsWLoYqY/KgEhm09QyxfW29QfeWlkWk/img.png",
-    rating: 4.7
-  },
-  {
-    id: 5,
-    name: "kimbap",
-    image: "https://cdn.fneyefocus.com/news/photo/202105/15991_19264_5337.jpg",
-    rating: 4.6
-  },
-]
+// component를 만들 때마다 모든 것을 다 구현하지 않기 위해서 extend from을 함
+// react component에서 확장을 하였기 때문에 render method를 사용.
+// function component는 함수이고 무언가를 return해야 함.
+// class component는 class고 react component로 부터 확장됨.
+// react는 자동적으로 모든 class component의 render method를 실행하고자 함
+class App extends React.Component{
+  // state는 object이고 component의 data를 넣을 공간이 있고 이 데이터는 변함
+  state = {
+    count: 0
+  };
 
-/* 
-  food의 매개변수(props) 자리에 {fav} 를 넣은 이유는
-  props object 내부에 fav가 있고 그 fav를 사용하기 위해서는 { }를 이용 해야함.
-*/
+  // 이건 javascript코드임
+  add = () => {
+    console.log("add");
+  };
+  minus = () => {
+    console.log("minus");
+  };
 
-// 밑에처럼 할수 도 있음.
-// function Food(props) {
-//   return <h1>I like {props.fav}</h1>
-// }
-
-// 위에랑 같은 소리임.
-// function Food({fav}) {
-//   return <h1>I like {fav}</h1>
-// }
-function Food({name, picture, rating}) {
-  return (
-    <div>
-      <h1>I like {name}</h1>
-      <h4>{rating}/5.0</h4>
-      <img src = {picture} alt = {name}/>
-    </div>
-  );
-}
-
-Food.propTypes = {
-  name: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-  rating: PropTypes.number
-}
-
-/* 
-// ♠
-function renderFood(dish) {
-  //console.log(dish);
-  return <Food key={dish.id} name={dish.name} picture={dish.image}/>
-}
-*/
-Food.propTypes = {
-
-}
-
-function App() {
-  return (
-    <div>
-      <h1>Hello!!!</h1>
-      
-      {/* ♠로 주석 처리한 부분하고 같은 것인데 에로우 함수로 하면 간단하게 가능! */}
-      {/* 여기서 17번줄 Food 함수에서 보면 key 프롭스는 Food함수로 전달되지 않음 */}
-      {/* 이것은 기본적으로 react 내부에서 사용하기 위함임 */}
-      {foodILike.map(dish => (
-          <Food
-            key={dish.id}
-            name = {dish.name}
-            picture = {dish.image}
-            rating = {dish.rating}
-            />
-        ))
-      }
-      {/* ♠ */}
-      {/*
-      {console.log(foodILike.map(renderFood))}
-      {foodILike.map(renderFood)}
-      */}
-
-
-
-      {/* 
-        Food라는 component에 fav라는 이름의 property를 kimchi라는 value로 줌.
-        component는 대문자로 시작해야 함.
-      */}
-      {/*
-      component값은 밑에처럼 사용할 수 있음.
-      <Food
-        fav = "kimchi"
-        something = {true}
-        array = {["hello", 1, 2, 3, 4, true]}  
-      />
-      */}
-
-      {/* <Food fav = "kimchi" />
-      <Food fav = "ramen" />
-      <Food fav = "samgiopsal" />
-      <Food fav = "chukumi" />
-      <Food fav = "kimbap" /> */}
-    </div>
-  );
+  render(){
+    return (
+      <div>
+        <h1> I'm a class {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    )
+  }
 }
 
 export default App;

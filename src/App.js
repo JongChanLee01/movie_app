@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Movie from "./movie";
 
 // component를 만들 때마다 모든 것을 다 구현하지 않기 위해서 extend from을 함
 // react component에서 확장을 하였기 때문에 render method를 사용.
@@ -20,8 +21,15 @@ class App extends React.Component{
   // 이렇게 해주거나 아래처럼 하면됨
 
   getMovies = async() => {
-    const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
-  }
+    // movies.data.data.movies를 아래처럼 단축시킴
+    const {
+      data: {
+         data: {movies}
+        }
+      } = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
+    // this.setState({movies:movies}); 아래처럼 줄일 수 있음 무비중 하나는 state무비 하나는 axios 무비
+    this.setState({movies, isLoading: false});
+  };
   componentDidMount(){
     this.getMovies();
 
@@ -30,13 +38,23 @@ class App extends React.Component{
     // axios는 fetch위에 있는 작은 layer같은 것
   }
   render(){
-    const {isLoading} = this.state;
+    const {isLoading, movies} = this.state;
     return (
       <div>
         {/* {this.state.isLoading ? "Loading" : "We are ready"} */}
         
         {/* 위에 const {isLoading} = this.state; (ES6 코드)를 새로 작성하여 밑에 this.state를 더이상 안붙여도됨*/}
-        {isLoading ? "Loading" : "We are ready"}
+        {isLoading ? "Loading..." : movies.map(movie => (
+          // api에서 값을 받아오는 것이므로 movie.뒤에 있는 값은 api에서 확인 후 입력한 것
+          <Movie
+            key = {movie.id}
+            id = {movie.id}
+            year = {movie.year}
+            title = {movie.title}
+            summary = {movie.summary}
+            poster = {movie.medium_cover_image}
+          />
+        ))}
       </div>
     )
   }

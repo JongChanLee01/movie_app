@@ -38,6 +38,9 @@ class App extends React.Component{
     // js에서 data를 fetch하는 방법은 fetch를 사용함. 하지만 더 좋은 방법으론 Axios가 있음
     // axios는 fetch위에 있는 작은 layer같은 것
   }
+
+  //render 안에 className으로 class이름을 정하는 이유는 JS의 class는 11번째 줄에 class App extends React.Component의 class를 의미함
+  //react는 class를 혼란스러워 하기 때문에 className으로 하는 것이 좋음
   render(){
     const {isLoading, movies} = this.state;
     return (
@@ -61,6 +64,7 @@ class App extends React.Component{
                 title = {movie.title}
                 summary = {movie.summary}
                 poster = {movie.medium_cover_image}
+                genres = {movie.genres}
               />
               ))}
             </div>

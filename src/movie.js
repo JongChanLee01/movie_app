@@ -13,11 +13,14 @@ function Movie({year, title, summary, poster, genres}){
               <li key={index} className="genres__genre">{genre}</li>
             ))}
           </ul>
-          <p className="movie__summary">{summary}</p>
+          <p className="movie__summary">{summary.slice(0, 140)}...</p>
         </div>
       </div>
     );
 }
+// const summary = asdfqwera sdfqu ewoiruopq
+// summary.length -->summary에 들어가 있는 데이터의 길이가 나옴
+// summary.slice( 0, 10) --> summary.slice( 시작점, 10개(끝점) ) 0 1 2 3 4 5 6 7 8 9
 
 Movie.propTypes = {
   id: PropTypes.number.isRequired,

@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Movie from "./movie";
 import "./App.css";
+import "./movie.css";
 
 // component를 만들 때마다 모든 것을 다 구현하지 않기 위해서 extend from을 함
 // react component에서 확장을 하였기 때문에 render method를 사용.

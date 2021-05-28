@@ -10,7 +10,7 @@ body {
     height: 100%;
 }
 
-html, body, #myStyle, .container {
+html, body, #apple, .container {
     height: 100%;
     display: flex;
     justify-content: center;

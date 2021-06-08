@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import Movie from "../components/movie";
-import "../components/movie.css";
 import "./home.css";
 
 // component를 만들 때마다 모든 것을 다 구현하지 않기 위해서 extend from을 함

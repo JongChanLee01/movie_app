@@ -2,6 +2,7 @@ import React from "react";
 import { HashRouter, Route} from "react-router-dom";
 import Home from "./routes/home";
 import About from "./routes/about";
+import Detail from "./routes/detail";
 import Navigation from "./components/navigation";
 import "./App.css";
 
@@ -15,6 +16,9 @@ function App() {
       <Navigation />
       <Route path="/" exact={true} component={Home} />
       <Route path="/about" component={About} />
+      {/* :id를 붙여서 사용할수도 있음 */}
+      <Route path="/movie/:id" component={Detail} />
+      {/* <Route path="/movie-detail" component={Detail} /> */}
       {/* <Route path="/home">
         <h1>Home</h1>
       </Route>
@@ -25,7 +29,7 @@ function App() {
         <h1>About</h1>
       </Route> */}
     </HashRouter>
-  )
+  );
 }
 
 export default App;
